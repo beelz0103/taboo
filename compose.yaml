@@ -1,0 +1,24 @@
+services:
+  taboo:
+    build: .
+    image: taboo:local
+    init: true
+    restart: unless-stopped
+    ports:
+      - "${TABOO_PORT:-7331}:7331"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 7331
+      PLAYED_STORE: /app/.taboo-data/played-cards.json
+      OWNER_LOCAL: "0"
+      HOST_KEY: "${HOST_KEY:-}"
+    volumes:
+      - taboo-data:/app/.taboo-data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  taboo-data:
