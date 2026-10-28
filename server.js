@@ -203,6 +203,20 @@ const server = http.createServer((req, res) => {
       res.end(buf);
     });
   }
+  if(req.method === "GET" && (url.pathname === "/japanese-master-source.js" || url.pathname === "/tools/curate-japanese-engine.js")){
+    const file=url.pathname==="/japanese-master-source.js"?"japanese-master-source.js":path.join("tools","curate-japanese-engine.js");
+    return fs.readFile(path.join(ROOT,file), (err, buf) => {
+      if(err){ res.writeHead(404, {"content-type":"text/plain"}); return res.end("curator source not found"); }
+      res.writeHead(200, {"content-type":"text/javascript; charset=utf-8", "cache-control":"no-cache"});res.end(buf);
+    });
+  }
+  if(req.method === "GET" && (url.pathname === "/curate" || url.pathname === "/curate.html")){
+    return fs.readFile(path.join(ROOT, "curate.html"), (err, buf) => {
+      if(err){ res.writeHead(404, {"content-type":"text/plain"}); return res.end("curation tool not found"); }
+      res.writeHead(200, {"content-type":"text/html; charset=utf-8", "cache-control":"no-cache"});
+      res.end(buf);
+    });
+  }
 
   /* ---- a screen joins a room and listens ---- */
   if(req.method === "GET" && url.pathname === "/events"){

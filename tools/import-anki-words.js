@@ -2,11 +2,11 @@
 "use strict";
 
 /* Generate the browser-ready Japanese master list from the three Anki decks.
-   Usage: node tools/import-anki-words.js collection.anki2 japanese-master.js */
+   Usage: node tools/import-anki-words.js collection.anki2 japanese-master-source.js */
 const {execFileSync}=require("child_process");
 const fs=require("fs");
 
-const db=process.argv[2], out=process.argv[3]||"japanese-master.js";
+const db=process.argv[2], out=process.argv[3]||"japanese-master-source.js";
 if(!db) throw new Error("collection.anki2 path required");
 const deckIds=[
   1620721486696,1631596601155,                 // Japanese Self-Study, Anime Cards

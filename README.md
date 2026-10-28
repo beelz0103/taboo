@@ -42,3 +42,18 @@ Only the three most recent game days are retained per room.
 ```sh
 node server.js
 ```
+
+## Curate the Japanese master deck
+
+Start the server and open <http://localhost:7331/curate>. The curation tool can
+search and filter all cards, edit fields and forbidden words, exclude unsuitable
+cards, add new cards, and export a replacement `japanese-master.js`. Work in
+progress is saved in the browser; the source file is changed only when you
+download and replace it explicitly.
+
+The 3,000-card curated deck opens directly for review. To rebuild the target
+selection from the full source deck before reviewing its NG words, run:
+
+```sh
+node tools/curate-japanese-master.js
+```

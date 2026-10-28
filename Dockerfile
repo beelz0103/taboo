@@ -6,7 +6,8 @@ ENV HOST=0.0.0.0 \
     PORT=7331 \
     PLAYED_STORE=/app/.taboo-data/played-cards.json
 
-COPY --chown=node:node server.js index.html japanese-master.js ./
+COPY --chown=node:node server.js index.html japanese-master.js japanese-master-source.js curate.html ./
+COPY --chown=node:node tools/curate-japanese-engine.js ./tools/
 
 RUN mkdir -p /app/.taboo-data && chown node:node /app/.taboo-data
 

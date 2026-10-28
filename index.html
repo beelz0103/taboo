@@ -2785,7 +2785,7 @@ function cardMsg(){
     .map(({p}) => p.id);
   return {t:"card", not:blocked, day:localDay(), card:{
     key:cardKey(current),
-    w:current.w, r:current.r, ng:current.ng.slice(),
+    w:current.w, r:current.r, e:current.e||"", ng:current.ng.slice(),
     cat:(T.cats[current.c]||current.c), lvl:T.lvlName[current.d],
     no:$("cardNo").textContent, face:(slot<2?T.faceA:T.faceB)
   }};
